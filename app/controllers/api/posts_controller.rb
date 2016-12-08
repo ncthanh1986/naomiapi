@@ -36,7 +36,7 @@ class Api::PostsController < ApplicationController
 
     def update
         post = Post.find(params[:id])
-        if post.update(list_params)
+        if post.update(post_params)
             render json: {
                 status: 200,
                 message: "Successfully updated post",
