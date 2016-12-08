@@ -18,8 +18,20 @@ class Api::PostsController < ApplicationController
                 post: post
                 }.to_json
         else
-            head 500
+            render json: {
+                status: 500,
+                errors: post.errors
+                }.to_json
         end
+    end
+
+    def destroy
+        post = Post.find(params[:id])
+        post.destroy
+        render json: {
+            status: 200,
+            message: "Deleted"
+        }.to_json
     end
 
     private
