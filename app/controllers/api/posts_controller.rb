@@ -12,7 +12,11 @@ class Api::PostsController < ApplicationController
     def create
         post = Post.new(post_params)
         if post.save
-            head 200
+            render json: {
+                status: 200,
+                message: "Successfully created post",
+                post: post
+                }.to_json
         else
             head 500
         end
