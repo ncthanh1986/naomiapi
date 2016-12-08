@@ -34,6 +34,17 @@ class Api::PostsController < ApplicationController
         }.to_json
     end
 
+    def update
+        post = Post.find(params[:id])
+        if post.update(list_params)
+            render json: {
+                status: 200,
+                message: "Successfully updated post",
+                post: post
+                }.to_json
+        end
+    end
+
     private
     def post_params
         params.require(:post).permit(:title,:content)
